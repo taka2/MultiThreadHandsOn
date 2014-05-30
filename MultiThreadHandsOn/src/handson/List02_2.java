@@ -22,7 +22,7 @@ public class List02_2 {
 	}
 
 	/**
-	 * スレッドセーフでない遅延初期化クラス
+	 * スレッドセーフな遅延初期化クラス
 	 */
 	private static class LazyInitRace {
 		private ExpensiveObject instance = null;

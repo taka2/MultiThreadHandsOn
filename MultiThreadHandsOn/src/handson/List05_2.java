@@ -4,7 +4,7 @@ import java.util.Vector;
 
 /**
  * チェック・ゼン・アクトを実装する
- * スレッドセーフじゃない版
+ * スレッドセーフ版
  */
 public class List05_2 {
 	private static final int NUM_LIST_SIZE = 1000;
@@ -40,7 +40,7 @@ public class List05_2 {
 	}
 
 	/**
-	 * リストヘルパー
+	 * ベクターヘルパー
 	 */
 	private static class VectorHelper {
 		public static <E> E getLast(Vector<E> list) {

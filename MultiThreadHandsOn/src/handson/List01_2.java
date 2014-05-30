@@ -30,7 +30,7 @@ public class List01_2 {
 	}
 
 	/**
-	 * スレッドセーフでない順序数生成クラス
+	 * スレッドセーフな順序数生成クラス
 	 */
 	private static class UnsafeSequence {
 		private int nextValue = 1;

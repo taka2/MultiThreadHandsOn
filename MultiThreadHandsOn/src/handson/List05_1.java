@@ -40,7 +40,7 @@ public class List05_1 {
 	}
 
 	/**
-	 * リストヘルパー
+	 * ベクターヘルパー
 	 */
 	private static class VectorHelper {
 		public static <E> E getLast(Vector<E> list) {

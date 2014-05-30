@@ -43,7 +43,7 @@ public class List03_2 {
 	}
 
 	/**
-	 * スレッドセーフでない可変な整数クラス
+	 * スレッドセーフな可変な整数クラス
 	 */
 	private static class MutableInteger {
 		private int value;
