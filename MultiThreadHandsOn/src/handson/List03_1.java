@@ -5,7 +5,7 @@ package handson;
  * スレッドセーフじゃない版
  */
 public class List03_1 {
-	private static final int NUM_LOOP = 500;
+	private static final int NUM_LOOP = 1000;
 
 	public static void main(String[] args) {
 		// スレッド間で共有するオブジェクト
