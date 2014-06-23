@@ -5,6 +5,7 @@ import java.util.Vector;
 /**
  * チェック・ゼン・アクトを実装する
  * スレッドセーフ版
+ * リストのサイズから最終要素のインデックスを取得しているため、最終要素が正しく取れるはず
  */
 public class List05_2 {
 	private static final int NUM_LIST_SIZE = 1000;

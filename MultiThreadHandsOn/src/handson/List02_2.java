@@ -3,6 +3,7 @@ package handson;
 /**
  * 遅延初期化クラス
  * スレッドセーフ版
+ * 同一のhashCodeを表示する
  */
 public class List02_2 {
 	public static void main(String[] args) {

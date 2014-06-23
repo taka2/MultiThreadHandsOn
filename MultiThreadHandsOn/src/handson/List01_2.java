@@ -3,6 +3,7 @@ package handson;
 /**
  * スレッドセーフでない順序数生成クラス
  * スレッドセーフ版
+ * 500ループ×2スレッドでseq=1000となる。
  */
 public class List01_2 {
 	private static final int NUM_LOOP = 500;

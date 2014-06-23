@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * プット・イフ・アブセントを実装する
  * スレッドセーフ版
+ * 100回リストに追加してるから、リストのサイズは100になるはず
  */
 public class List04_3 {
 	private static final int NUM_LOOP = 100;

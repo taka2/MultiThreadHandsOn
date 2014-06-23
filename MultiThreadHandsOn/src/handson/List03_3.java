@@ -3,6 +3,8 @@ package handson;
 /**
  * スレッドセーフでない可変な整数クラス
  * スレッドセーフ＆順番保証版
+ * 100をセットしてからgetしてるので、常に100が表示されるはず
+ * 再現しにくいので、再現しなかったらループ回数増やす
  */
 public class List03_3 {
 	private static final int NUM_LOOP = 1000;
