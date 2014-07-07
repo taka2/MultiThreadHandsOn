@@ -9,35 +9,25 @@ import java.util.List;
  * スレッドセーフじゃない版
  */
 public class List04_1 {
-	private static final int NUM_LOOP = 100;
+	private static final int NUM_LOOP = 1000;
 
 	public static void main(String[] args) {
 		// スレッド間で共有するオブジェクト
 		final ListHelper<Integer> sharedObject = new ListHelper<Integer>();
 
-		Runnable r1 = new Runnable() {
+		Runnable r = new Runnable() {
 			public void run() {
 				for(int i=1; i<=NUM_LOOP; i++) {
 					sharedObject.putIfAbsent(i);
 				}
 			}
 		};
-		Runnable r2 = new Runnable() {
-			public void run() {
-				for(int i=1; i<=NUM_LOOP; i++) {
-					// 共有オブジェクトのリストに直接putIfAbsent
-					if(!sharedObject.list.contains(i)) {
-						sharedObject.list.add(i);
-					}
-				}
-			}
-		};
 
 		// スレッド1開始
-		Thread t1 = new Thread(r1);
+		Thread t1 = new Thread(r);
 		t1.start();
 		// スレッド2開始
-		Thread t2 = new Thread(r2);
+		Thread t2 = new Thread(r);
 		t2.start();
 		
 		try {
@@ -48,7 +38,7 @@ public class List04_1 {
 			// 何もしない
 		}
 
-		// Listの数を表示(100になるはず)
+		// Listの数を表示(1000になるはず)
 		System.out.println(sharedObject.list.size());
 	}
 
@@ -56,9 +46,9 @@ public class List04_1 {
 	 * リストヘルパー
 	 */
 	private static class ListHelper<E> {
-		public List<E> list = Collections.synchronizedList(new ArrayList<E>());
+		private List<E> list = Collections.synchronizedList(new ArrayList<E>());
 
-		public synchronized boolean putIfAbsent(E x) {
+		public boolean putIfAbsent(E x) {
 			boolean absent = !list.contains(x);
 			if(absent) {
 				list.add(x);
