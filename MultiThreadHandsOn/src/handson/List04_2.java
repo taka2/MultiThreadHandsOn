@@ -48,7 +48,7 @@ public class List04_2 {
 	private static class ListHelper<E> {
 		private List<E> list = new ArrayList<E>();
 
-		public synchronized boolean putIfAbsent(E x) {
+		public boolean putIfAbsent(E x) {
 			synchronized(list) {
 				boolean absent = !list.contains(x);
 				if(absent) {
