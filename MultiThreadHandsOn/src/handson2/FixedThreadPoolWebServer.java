@@ -8,19 +8,31 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
-public class SequencialWebServer {
+public class FixedThreadPoolWebServer {
 	private static final int MEMORY_USAGE = 1000000;
 	private static final int PROCESS_TIME = 3000;
+	private static final int THREAD_POOL_SIZE = 100;
 
 	public static void main(String[] args) throws Exception {
 		ServerSocket ss = new ServerSocket(8888);
+		Executor executor = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
 		while(true) {
 			System.out.println("クライアントからの接続を待ち受けます。");
-			Socket client = ss.accept();
+			final Socket client = ss.accept();
 			System.out.println("クライアントから接続されました。");
-			handleRequest(client);
-			client.close();
+			Runnable r = new Runnable() {
+				public void run() {
+					try {
+						handleRequest(client);
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+			executor.execute(r);
 			System.out.println("クライアントを切断しました。");
 		}
 	}
@@ -30,7 +42,7 @@ public class SequencialWebServer {
 	 * @param client クライアントのSocketオブジェクト
 	 * @throws IOException IOエラー発生時
 	 */
-	private static void handleRequest(Socket client) throws IOException {
+	private static void handleRequest(final Socket client) throws IOException {
 		// 受付日時を取得
 		Date acceptDate = new Date();
 		// クライアントからのリクエスト内容を読み込み
@@ -60,5 +72,7 @@ public class SequencialWebServer {
 		writer.println(acceptDate);
 		writer.flush();
 		writer.close();
+		
+		client.close();
 	}
 }

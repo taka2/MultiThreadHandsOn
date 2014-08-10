@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-public class SequencialWebServer {
+public class UnlimitedThreadWebServer {
 	private static final int MEMORY_USAGE = 1000000;
 	private static final int PROCESS_TIME = 3000;
 
@@ -17,10 +17,17 @@ public class SequencialWebServer {
 		ServerSocket ss = new ServerSocket(8888);
 		while(true) {
 			System.out.println("クライアントからの接続を待ち受けます。");
-			Socket client = ss.accept();
+			final Socket client = ss.accept();
 			System.out.println("クライアントから接続されました。");
-			handleRequest(client);
-			client.close();
+			new Thread() {
+				public void run() {
+					try {
+						handleRequest(client);
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
 			System.out.println("クライアントを切断しました。");
 		}
 	}
@@ -30,7 +37,7 @@ public class SequencialWebServer {
 	 * @param client クライアントのSocketオブジェクト
 	 * @throws IOException IOエラー発生時
 	 */
-	private static void handleRequest(Socket client) throws IOException {
+	private static void handleRequest(final Socket client) throws IOException {
 		// 受付日時を取得
 		Date acceptDate = new Date();
 		// クライアントからのリクエスト内容を読み込み
@@ -60,5 +67,7 @@ public class SequencialWebServer {
 		writer.println(acceptDate);
 		writer.flush();
 		writer.close();
+		
+		client.close();
 	}
 }
