@@ -11,6 +11,10 @@ import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * クライアントからのリクエストを受け付けるたびに、
+ * 最大100個のスレッドを生成するwebサーバの例
+ */
 public class FixedThreadPoolWebServer {
 	private static final int MEMORY_USAGE = 1000000;
 	private static final int PROCESS_TIME = 3000;

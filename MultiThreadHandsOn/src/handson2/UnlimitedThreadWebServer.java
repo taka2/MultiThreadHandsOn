@@ -9,6 +9,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
+/**
+ * クライアントからのリクエストを受け付けるたびにスレッドを生成するwebサーバの例
+ */
 public class UnlimitedThreadWebServer {
 	private static final int MEMORY_USAGE = 1000000;
 	private static final int PROCESS_TIME = 3000;

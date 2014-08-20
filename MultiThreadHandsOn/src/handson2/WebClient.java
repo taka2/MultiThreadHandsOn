@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * 複数スレッドでアクセスする簡易webクライアント
+ */
 public class WebClient {
 	private static final int NUM_THREADS = 100;
 	private static final String TARGET_URL = "http://localhost:8888";

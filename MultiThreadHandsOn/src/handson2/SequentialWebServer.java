@@ -9,7 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-public class SequencialWebServer {
+/**
+ * クライアントからのリクエストを逐次処理するwebサーバの例
+ */
+public class SequentialWebServer {
 	private static final int MEMORY_USAGE = 1000000;
 	private static final int PROCESS_TIME = 3000;
 

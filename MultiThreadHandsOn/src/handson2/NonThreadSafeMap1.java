@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * 同期化しないMapに対して、putとiterateを同時に行った場合、
+ * ConcurrentModificationExceptionが発生してしまうことを確認するサンプル。
+ */
 public class NonThreadSafeMap1 {
 	private static final int NUM_DATA = 10000;
 	private static final int NUM_LOOP = 1000;

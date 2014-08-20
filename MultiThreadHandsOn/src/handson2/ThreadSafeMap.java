@@ -4,6 +4,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * ConcurrentHashMapを使って、
+ * ConcurrentModificationExceptionが発生しないことを確認するサンプル。
+ */
 public class ThreadSafeMap {
 	private static final int NUM_DATA = 10000;
 	private static final int NUM_LOOP = 1000;

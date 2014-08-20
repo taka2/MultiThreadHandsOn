@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * iterate中のMapに対して同期化を行うことで、
+ * ConcurrentModificationExceptionが発生しないことを確認するサンプル。
+ */
 public class NonThreadSafeMap2 {
 	private static final int NUM_DATA = 10000;
 	private static final int NUM_LOOP = 1000;
