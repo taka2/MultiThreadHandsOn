@@ -11,6 +11,10 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CachedThreadPoolを使ってスレッドを生成するwebサーバの例
+ * 無制限にスレッドを生成するので、リソース枯渇してうまく動かない。
+ */
 public class CachedThreadPoolWebServer {
 	private static final int MEMORY_USAGE = 1000000;
 	private static final int PROCESS_TIME = 3000;
