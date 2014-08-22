@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -22,7 +22,7 @@ public class FixedThreadPoolWebServer {
 
 	public static void main(String[] args) throws Exception {
 		ServerSocket ss = new ServerSocket(8888);
-		Executor executor = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
+		ExecutorService executor = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
 		while(true) {
 			System.out.println("クライアントからの接続を待ち受けます。");
 			final Socket client = ss.accept();
