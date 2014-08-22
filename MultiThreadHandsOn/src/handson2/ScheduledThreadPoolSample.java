@@ -4,6 +4,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * ScheduledThreadPool‚ÌƒTƒ“ƒvƒ‹
+ */
 public class ScheduledThreadPoolSample {
 	private static final int THREAD_POOL_SIZE = 100;
 
