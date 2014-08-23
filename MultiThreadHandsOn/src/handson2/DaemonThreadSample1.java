@@ -1,5 +1,8 @@
 package handson2;
 
+/**
+ * デーモンスレッドを使わない場合のサンプル
+ */
 public class DaemonThreadSample1 {
 
 	public static void main(String[] args) {

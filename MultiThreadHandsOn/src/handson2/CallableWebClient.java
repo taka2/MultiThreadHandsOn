@@ -12,6 +12,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * CallableとFutureを使って、
+ * メインスレッドとは別のスレッドでwebサーバへのリクエストを行い、
+ * 結果をメインスレッドで受け取り表示するサンプル。
+ */
 public class CallableWebClient {
 	private static final int NUM_THREADS = 100;
 	private static final String TARGET_URL = "http://localhost:8888";

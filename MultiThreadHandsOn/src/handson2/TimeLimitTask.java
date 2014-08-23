@@ -7,6 +7,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 時間制限のある活動（指定時間後に停止するタスク）を実現するサンプル
+ */
 public class TimeLimitTask {
 	// 制限時間（秒）
 	private static final int TIMEOUT = 5;
