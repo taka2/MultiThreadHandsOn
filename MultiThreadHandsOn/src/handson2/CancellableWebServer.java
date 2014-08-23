@@ -13,6 +13,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * "/stop"がリクエストされると、停止してしまうwebサーバ
+ */
 public class CancellableWebServer {
 	private static final int THREAD_POOL_SIZE = 100;
 	private static final String STOP_URI = "/stop";

@@ -2,6 +2,9 @@ package handson2;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
+/**
+ * UncaughtExceptionHandler‚Ì“®ì‚ğŒ©‚éƒTƒ“ƒvƒ‹
+ */
 public class UncaughtExceptionHandlerSample {
 	public static void main(String[] args) {
 		// UncaughtExceptionHandler‚ğ’è‹`

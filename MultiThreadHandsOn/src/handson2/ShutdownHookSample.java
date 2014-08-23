@@ -1,5 +1,8 @@
 package handson2;
 
+/**
+ * シャットダウンフックのサンプル
+ */
 public class ShutdownHookSample {
 	public static void main(String[] args) {
 		// シャットダウンフックを定義

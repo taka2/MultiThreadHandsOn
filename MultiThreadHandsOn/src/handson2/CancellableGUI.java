@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * ユーザがキャンセルをリクエスト可能なGUIのサンプル。
+ */
 public class CancellableGUI {
 	private static Future<?> buttonClickTask = null;
 	
@@ -24,6 +27,8 @@ public class CancellableGUI {
 
 		final JButton buttonClick = new JButton("click");
 		final JButton buttonCancel = new JButton("cancel");
+
+		// クリックボタンのイベントハンドラ
 		buttonClick.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				label.setText("processing...");
@@ -47,6 +52,7 @@ public class CancellableGUI {
 				buttonClickTask = executor.submit(r);
 			}
 		});
+		// キャンセルボタンのイベントハンドラ
 		buttonCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				synchronized(buttonClickTask) {
