@@ -25,11 +25,7 @@ public class CallableWebClient {
 		// É^ÉXÉN
 		Callable<String> task = new Callable<String>() {
 			public String call() throws IOException {
-				try {
-					return CallableWebClient.sendRequest();
-				} catch(IOException e) {
-					throw e;
-				}
+				return CallableWebClient.sendRequest();
 			}
 		};
 
