@@ -21,9 +21,7 @@ public class LiveLockSample {
 		Runnable enqueueTask = new Runnable() {
 			int counter = 1;
 			public void run() {
-				synchronized(queue) {
-					queue.add(counter);
-				}
+				queue.add(counter);
 				counter++;
 			}
 		};
