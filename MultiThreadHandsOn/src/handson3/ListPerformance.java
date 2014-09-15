@@ -16,7 +16,6 @@ public class ListPerformance {
 	private static final int CALC_AMOUNT = 200;
 
 	// 共有オブジェクト
-	//final Queue<Integer> queue = new ConcurrentLinkedQueue<Integer>();
 	private static final Queue<Integer> queue = new LinkedList<Integer>();
 	public static void main(String[] args) {
 		// スレッド数を変えながらタスクを実行する（タスク数は定数で設定）
