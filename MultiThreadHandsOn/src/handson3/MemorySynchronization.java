@@ -44,7 +44,6 @@ public class MemorySynchronization {
 			long sum = 0;
 			for(int i=0; i<NUM_DATA; i++) {
 				// “¯Šú‰»‚³‚ê‚é
-				//synchronized(MemorySynchronization.class) {
 				synchronized(lock) {
 					sum += i;
 				}
