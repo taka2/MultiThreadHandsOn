@@ -65,6 +65,9 @@ public class CoObjectDeadlock {
 		}
 	}
 	
+	/**
+	 * 配車を表すクラス
+	 */
 	static class Dispatcher {
 		private final Set<Taxi> taxis;
 		private final Set<Taxi> availableTaxis;
