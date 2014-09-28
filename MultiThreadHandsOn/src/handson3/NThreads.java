@@ -15,26 +15,29 @@ import java.util.concurrent.Future;
  */
 public class NThreads {
 	// タスク数（負荷の大きさ）
-	private static final int LOOP_COUNT = 100000;
+	private static final int LOOP_COUNT = 5000;
 	
-	public static void main(String[] args) {
-		// ファイルを読み込んで行数を返すコーラブルタスク
-		Callable<Integer> fileReadTask = new Callable<Integer>() {
-			public Integer call() throws IOException {
-				BufferedReader br = new BufferedReader(new FileReader("src/handson3/NThreads.java"));
-				int numLines = 0;
-				while(br.readLine() != null) {
-					numLines++;
-				}
-				br.close();
-				return numLines;
+	// ファイルを読み込んで行数を返すタスク
+	private static class FileReadTask implements Callable<Integer> {
+		public Integer call() throws IOException {
+			BufferedReader br = new BufferedReader(new FileReader("src/handson3/NThreads.java"));
+			int numLines = 0;
+			while(br.readLine() != null) {
+				numLines++;
 			}
-		};
-		
+			br.close();
+			return numLines;
+		}
+	}
+	public static void main(String[] args) throws Exception {		
+		// 待ち
+		System.out.println("開始");
+		Thread.sleep(15000);
+
 		// スレッド数を変えながらタスクを実行する（タスク数は定数で設定）
 		int[] NUM_THREADS = {1, 2, 3, 4, 5, 10, 20, 50, 100};
 		for(int numThreads : NUM_THREADS) {
-			long executionTime = executeTask(fileReadTask, numThreads);
+			long executionTime = executeTask(new FileReadTask(), numThreads);
 			System.out.printf("numThreads = %3d, executionTime = %5d[ms]\n", numThreads, executionTime);
 		}
 	}
@@ -50,22 +53,26 @@ public class NThreads {
 		long startTime = System.currentTimeMillis();
 
 		List<Future<Integer>> taskResults = new ArrayList<Future<Integer>>();
-		ExecutorService service = Executors.newFixedThreadPool(numThreads);
-		// タスクの実行を依頼
-		for(int i=0; i<LOOP_COUNT; i++) {
-			taskResults.add(service.submit(task));
-		}
-		
-		for(Future<Integer> taskResult : taskResults) {
-			try {
-				// タスクの実行結果を取得
-				taskResult.get();
-			} catch(Exception e) {
-				e.printStackTrace();
+		int loopCount = LOOP_COUNT / numThreads;
+		for(int j=0; j<loopCount; j++) {
+			ExecutorService service = Executors.newFixedThreadPool(numThreads);
+	
+			// タスクの実行を依頼
+			for(int i=0; i<numThreads; i++) {
+				taskResults.add(service.submit(task));
 			}
+			
+			for(Future<Integer> taskResult : taskResults) {
+				try {
+					// タスクの実行結果を取得
+					taskResult.get();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+	
+			service.shutdown();
 		}
-
-		service.shutdown();
 
 		// 終了時刻
 		long endTime = System.currentTimeMillis();
