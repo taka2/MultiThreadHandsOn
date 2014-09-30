@@ -23,7 +23,7 @@ public class ContextSwitch {
 		
 		long startTime = System.currentTimeMillis();
 		ExecutorService service = Executors.newSingleThreadExecutor();
-		for(int i=0; i<100; i++) {
+		for(int i=0; i<1000; i++) {
 			service.submit(task);
 		}
 		service.shutdown();

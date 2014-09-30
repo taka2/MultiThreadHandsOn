@@ -22,8 +22,8 @@ public class ContextSwitch2 {
 		};
 
 		long startTime = System.currentTimeMillis();
-		ExecutorService service = Executors.newFixedThreadPool(100);		
-		for(int i=0; i<100; i++) {
+		ExecutorService service = Executors.newFixedThreadPool(1000);		
+		for(int i=0; i<1000; i++) {
 			service.submit(task);
 		}
 		service.shutdown();
