@@ -25,8 +25,21 @@ public class AtomicVariable {
 			this.counter = 0;
 		}
 	}
+	
+	// アトミック変数を使って並行で数を数えるクラス
+	private static class AtomicCounter {
+		private AtomicInteger atomicCounter = new AtomicInteger();
+		public int increment() {
+			return this.atomicCounter.incrementAndGet();
+		}
+		public void resetCounter() {
+			this.atomicCounter.set(0);
+		}
+	}
+	
 	public static void main(String[] args) {
 		final Counter counter = new Counter();
+		final AtomicCounter atomicCounter = new AtomicCounter();
 
 		// synchronizedを使って並行で数を数えるタスク
 		Runnable counterTask = new Runnable() {
@@ -37,13 +50,11 @@ public class AtomicVariable {
 			}
 		};
 		
-		final AtomicInteger atomicCounter = new AtomicInteger();
-
 		// アトミック変数を使って数を数えるタスク
 		Runnable atomicCounterTask = new Runnable() {
 			public void run() {
 				for(int i=0; i<LOOP_COUNT; i++) {
-					atomicCounter.incrementAndGet();
+					atomicCounter.increment();
 				}
 			}
 		};
@@ -61,7 +72,7 @@ public class AtomicVariable {
 		for(int numThreads : NUM_THREADS) {
 			long executionTime = executeTask(atomicCounterTask, numThreads);
 			System.out.printf("numThreads = %3d, executionTime = %5d[ms]\n", numThreads, executionTime);
-			atomicCounter.set(0);
+			atomicCounter.resetCounter();
 		}
 	}
 	
